@@ -1,0 +1,129 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  id                String               @id @default(cuid())
+  name              String?
+  email             String?              @unique
+  password          String?
+  created_at        DateTime             @default(now())
+  updated_at        DateTime             @updatedAt
+  collections       collections[]
+  collections_review collections_review[]
+}
+
+model products {
+  id               String                @id @default(uuid())
+  name             String
+  slug             String                @unique
+  description      String?
+  price            Decimal?              @db.Decimal(10, 2)
+  image_url        String?
+  status           ProductStatus         @default(draft)
+  created_at       DateTime              @default(now())
+  updated_at       DateTime              @updatedAt
+  deleted_at       DateTime?
+  collections      collection_products[]
+  review_collections collection_review_products[]
+}
+
+model collection_types {
+  id                String                @id @default(uuid())
+  name              String                @unique
+  slug              String                @unique
+  description       String?
+  icon              String?
+  created_at        DateTime              @default(now())
+  updated_at        DateTime              @updatedAt
+  collections       collections[]
+  collections_review collections_review[]
+}
+
+model collections {
+  id               String                @id @default(uuid())
+  name             String
+  slug             String                @unique
+  description      String?
+  image_url        String?
+  banner_url       String?
+  display_order    Int                   @default(0)
+  is_featured      Boolean               @default(false)
+  status           ProductStatus         @default(published)
+  type_id          String
+  created_by       String
+  created_at       DateTime              @default(now())
+  updated_at       DateTime              @updatedAt
+  deleted_at       DateTime?
+  marketing_images String[]              @default([])
+  products         collection_products[]
+  type             collection_types      @relation(fields: [type_id], references: [id])
+  creator          users                 @relation(fields: [created_by], references: [id])
+}
+
+model collections_review {
+  id               String                     @id @default(uuid())
+  name             String
+  slug             String                     @unique
+  description      String?
+  image_url        String?
+  banner_url       String?
+  display_order    Int                        @default(0)
+  is_featured      Boolean                    @default(false)
+  status           ReviewStatus               @default(pending)
+  type_id          String
+  created_by       String
+  reviewer_notes   String?
+  created_at       DateTime                   @default(now())
+  updated_at       DateTime                   @updatedAt
+  marketing_images String[]                   @default([])
+  products         collection_review_products[]
+  type             collection_types           @relation(fields: [type_id], references: [id])
+  creator          users                      @relation(fields: [created_by], references: [id])
+}
+
+model collection_products {
+  id            String      @id @default(uuid())
+  collection_id String
+  product_id    String
+  display_order Int         @default(0)
+  created_at    DateTime    @default(now())
+  updated_at    DateTime    @updatedAt
+  collection    collections @relation(fields: [collection_id], references: [id])
+  product       products    @relation(fields: [product_id], references: [id])
+
+  @@unique([collection_id, product_id])
+}
+
+model collection_review_products {
+  id                 String             @id @default(uuid())
+  collection_review_id String
+  product_id         String
+  display_order      Int                @default(0)
+  created_at         DateTime           @default(now())
+  updated_at         DateTime           @updatedAt
+  collection_review  collections_review @relation(fields: [collection_review_id], references: [id])
+  product            products           @relation(fields: [product_id], references: [id])
+
+  @@unique([collection_review_id, product_id])
+}
+
+enum ProductStatus {
+  draft
+  published
+  archived
+}
+
+enum ReviewStatus {
+  pending
+  approved
+  rejected
+}
