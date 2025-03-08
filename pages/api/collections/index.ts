@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { prisma } from '@/lib/db';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === 'GET') {
+  if (req.method === 'POST') {
     try {
       const collections = await prisma.collections.findMany({
         include: {
@@ -10,6 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         },
       });
       res.status(200).json(collections);
+      console.log('collections successfully fetched');
     } catch (error) {
       res.status(500).json({ error: 'Error fetching collections' });
     }
