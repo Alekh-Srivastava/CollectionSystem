@@ -1,12 +1,15 @@
+/* Tailwind CSS base styles */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Custom theme variables */
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
 
+/* Dark mode overrides */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -14,6 +17,7 @@
   }
 }
 
+/* Global styles */
 body {
   color: var(--foreground);
   background: var(--background);

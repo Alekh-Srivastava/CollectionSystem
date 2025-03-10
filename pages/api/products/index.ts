@@ -1,21 +1,38 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { prisma } from '@/lib/db';
-import { faker } from '@faker-js/faker';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
     try {
-      // Generate fake products
-      const fakeProducts = Array.from({ length: 10 }).map(() => ({
-        id: faker.datatype.uuid(),
-        name: faker.commerce.productName(),
-        price: faker.commerce.price(),
-        description: faker.commerce.productDescription(),
-        imageUrl: faker.image.imageUrl(),
+      const products = await prisma.products.findMany({
+        where: {
+          deleted_at: null,
+          status: 'published',
+        },
+        select: {
+          id: true,
+          name: true,
+          description: true,
+          price: true,
+          image_url: true,
+          status: true,
+        },
+        orderBy: {
+          created_at: 'desc',
+        },
+      });
+
+      // Transform price to string with 2 decimal places
+      const formattedProducts = products.map(product => ({
+        ...product,
+        price: product.price ? parseFloat(product.price.toString()).toFixed(2) : '0.00'
       }));
 
-      res.status(200).json(fakeProducts);
+      res.status(200).json(formattedProducts);
     } catch (error) {
+      console.error("Error fetching products:", error);
       res.status(500).json({ error: 'Error fetching products' });
     }
   } else {

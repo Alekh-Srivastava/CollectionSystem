@@ -1,67 +1,32 @@
-import Link from "next/link";
+import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="space-y-8">
-      <div className="bg-white shadow rounded-lg p-6">
-        <h2 className="text-2xl font-bold mb-4">Welcome to Collections Management</h2>
-        <p className="text-gray-600 mb-4">
-          This application allows you to create and manage product collections. 
-          New collections will go through a review process before being published.
-        </p>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-          <div className="bg-blue-50 p-6 rounded-lg border border-blue-100">
-            <h3 className="text-lg font-semibold text-blue-800 mb-2">Create Collections</h3>
-            <p className="text-gray-600 mb-4">
-              Create new collections by selecting products from the catalog.
-              All new collections will be submitted for review.
-            </p>
-            <Link 
-              href="/collections/create" 
-              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-            >
-              Create Collection
-            </Link>
-          </div>
-          
-          <div className="bg-purple-50 p-6 rounded-lg border border-purple-100">
-            <h3 className="text-lg font-semibold text-purple-800 mb-2">View Collections</h3>
-            <p className="text-gray-600 mb-4">
-              Browse and manage existing collections or check the status of collections under review.
-            </p>
-            <Link 
-              href="/collections" 
-              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
-            >
-              View Collections
-            </Link>
-          </div>
-
-          <div className="bg-green-50 p-6 rounded-lg border border-green-100">
-            <h3 className="text-lg font-semibold text-green-800 mb-2">Review Queue</h3>
-            <p className="text-gray-600 mb-4">
-              Check the review queue to see the status of your submitted collections.
-            </p>
-            <Link 
-              href="/collections/review" 
-              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
-            >
-              Review Queue
-            </Link>
-          </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 flex items-center justify-center px-4">
+      <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 border border-white/10 w-full max-w-4xl">
+        <div className="mb-10 pb-6 border-b border-white/20">
+          <h1 className="text-3xl font-bold text-white">Welcome to Collection Manager</h1>
+          <div className="mt-2 w-16 h-1 bg-cyan-400 rounded-full"></div>
         </div>
-      </div>
-      
-      <div className="bg-white shadow rounded-lg p-6">
-        <h2 className="text-xl font-semibold mb-4">Getting Started</h2>
-        <ol className="list-decimal list-inside space-y-2 text-gray-600">
-          <li>Browse the <Link href="/products" className="text-blue-600 hover:underline">product catalog</Link> to see available products</li>
-          <li>Create a new collection by selecting products and providing collection details</li>
-          <li>Submit the collection for review</li>
-          <li>Check the review queue to see the status of your submitted collections</li>
-          <li>Once approved, collections will appear in the main collections list</li>
-        </ol>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <Link href="/collections" className="bg-white/5 backdrop-blur-md rounded-xl p-6 border border-white/10 hover:shadow-lg transition-shadow duration-300">
+            <h2 className="text-xl font-semibold text-cyan-100 mb-2">Collections</h2>
+            <p className="text-sm text-cyan-300/80">Manage and view all collections</p>
+          </Link>
+          <Link href="/collections/create" className="bg-white/5 backdrop-blur-md rounded-xl p-6 border border-white/10 hover:shadow-lg transition-shadow duration-300">
+            <h2 className="text-xl font-semibold text-cyan-100 mb-2">Create Collection</h2>
+            <p className="text-sm text-cyan-300/80">Start a new collection</p>
+          </Link>
+          <Link href="/collections/review" className="bg-white/5 backdrop-blur-md rounded-xl p-6 border border-white/10 hover:shadow-lg transition-shadow duration-300">
+            <h2 className="text-xl font-semibold text-cyan-100 mb-2">Review Queue</h2>
+            <p className="text-sm text-cyan-300/80">Approve or reject collections</p>
+          </Link>
+          <Link href="/products" className="bg-white/5 backdrop-blur-md rounded-xl p-6 border border-white/10 hover:shadow-lg transition-shadow duration-300">
+            <h2 className="text-xl font-semibold text-cyan-100 mb-2">Products</h2>
+            <p className="text-sm text-cyan-300/80">Manage available products</p>
+          </Link>
+        </div>
       </div>
     </div>
   );
