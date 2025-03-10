@@ -74,6 +74,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return { collection, reviewCollection: updatedReviewCollection };
     });
 
+    // Revalidate the collections page
+    try {
+      await res.revalidate('/collections');
+    } catch (error) {
+      console.error('Error revalidating collections page:', error);
+    }
+
     return res.status(200).json({ 
       message: 'Collection approved successfully',
       collection: result.collection,

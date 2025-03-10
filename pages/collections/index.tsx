@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { GetServerSideProps } from 'next';
+import { GetStaticProps } from 'next';
 import { PrismaClient, collections, products, collection_types } from '@prisma/client';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -71,24 +71,30 @@ export default function CollectionsPage({ collections }: CollectionsPageProps) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const prisma = new PrismaClient();
   try {
     const collections = await prisma.collections.findMany({
+      where: {
+        deleted_at: null,
+      },
       include: {
+        type: true,
         products: {
           include: {
-            product: true, // Include the full product details
+            product: true,
           },
         },
-        type: true,
+      },
+      orderBy: {
+        created_at: 'desc',
       },
     });
 
     // Transform the data to match our expected format
     const transformedCollections = collections.map(collection => ({
       ...collection,
-      products: collection.products.map(cp => cp.product), // Extract the full product details
+      products: collection.products.map(cp => cp.product),
     }));
 
     return {
@@ -100,8 +106,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
     console.error('Error fetching collections:', error);
     return {
       props: {
-        collections: []
-      }
+        collections: [],
+      },
     };
   } finally {
     await prisma.$disconnect();
