@@ -93,7 +93,7 @@ export default function ReviewQueuePage({ collections: initialCollections }: Rev
               </div>
             ) : (
               collections.map((collection) => (
-                <div key={collection.id} className="bg-white/5 backdrop-blur-md rounded-xl p-6 border border-white/10 hover:shadow-lg transition-shadow duration-300">
+                <div key={collection.id} className="bg-slate-800/95 backdrop-blur-md rounded-xl p-6 border border-white/10 hover:shadow-lg transition-shadow duration-300">
                   <div className="flex items-center justify-between">
                     <div>
                       <h2 className="text-xl font-semibold text-cyan-100">{collection.name}</h2>
@@ -132,7 +132,7 @@ export default function ReviewQueuePage({ collections: initialCollections }: Rev
                         return (
                           <div
                             key={product.id}
-                            className="group bg-white/5 backdrop-blur-md rounded-xl p-6 border border-white/10 hover:shadow-lg transition-shadow duration-300 cursor-pointer"
+                            className="group bg-slate-800/95 backdrop-blur-md rounded-xl p-6 border border-white/10 hover:shadow-lg transition-shadow duration-300 cursor-pointer"
                             onClick={() => router.push(`/products/${product.id}`)}
                           >
                             {product.image_url && (

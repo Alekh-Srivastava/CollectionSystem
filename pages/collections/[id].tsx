@@ -70,9 +70,9 @@ export default function CollectionDetailsPage({ collection }: CollectionDetailsP
       <div className="max-w-7xl mx-auto">
         <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 border border-white/10">
           <div className="mb-10 pb-6 border-b border-white/20">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
               <div>
-                <h1 className="text-3xl font-bold text-white">{collection.name}</h1>
+                <h1 className="text-3xl font-bold text-white mb-4 sm:mb-0">{collection.name}</h1>
                 <div className="mt-2 w-16 h-1 bg-cyan-400 rounded-full"></div>
                 <p className="mt-4 text-cyan-300/80">{collection.description}</p>
               </div>

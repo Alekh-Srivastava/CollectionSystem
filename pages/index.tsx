@@ -10,19 +10,31 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <Link href="/collections" className="bg-white/5 backdrop-blur-md rounded-xl p-6 border border-white/10 hover:shadow-lg transition-shadow duration-300">
+          <Link
+            href="/collections"
+            className="group bg-slate-800/95 backdrop-blur-md rounded-xl p-6 border border-white/10 hover:shadow-lg transition-shadow duration-300"
+          >
             <h2 className="text-xl font-semibold text-cyan-100 mb-2">Collections</h2>
             <p className="text-sm text-cyan-300/80">Manage and view all collections</p>
           </Link>
-          <Link href="/collections/create" className="bg-white/5 backdrop-blur-md rounded-xl p-6 border border-white/10 hover:shadow-lg transition-shadow duration-300">
+          <Link
+            href="/collections/create"
+            className="group bg-slate-800/95 backdrop-blur-md rounded-xl p-6 border border-white/10 hover:shadow-lg transition-shadow duration-300"
+          >
             <h2 className="text-xl font-semibold text-cyan-100 mb-2">Create Collection</h2>
             <p className="text-sm text-cyan-300/80">Start a new collection</p>
           </Link>
-          <Link href="/collections/review" className="bg-white/5 backdrop-blur-md rounded-xl p-6 border border-white/10 hover:shadow-lg transition-shadow duration-300">
+          <Link
+            href="/collections/review"
+            className="group bg-slate-800/95 backdrop-blur-md rounded-xl p-6 border border-white/10 hover:shadow-lg transition-shadow duration-300"
+          >
             <h2 className="text-xl font-semibold text-cyan-100 mb-2">Review Queue</h2>
             <p className="text-sm text-cyan-300/80">Approve or reject collections</p>
           </Link>
-          <Link href="/products" className="bg-white/5 backdrop-blur-md rounded-xl p-6 border border-white/10 hover:shadow-lg transition-shadow duration-300">
+          <Link
+            href="/products"
+            className="group bg-slate-800/95 backdrop-blur-md rounded-xl p-6 border border-white/10 hover:shadow-lg transition-shadow duration-300"
+          >
             <h2 className="text-xl font-semibold text-cyan-100 mb-2">Products</h2>
             <p className="text-sm text-cyan-300/80">Manage available products</p>
           </Link>

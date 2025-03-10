@@ -30,7 +30,7 @@ export default function CollectionsPage({ collections }: CollectionsPageProps) {
               <div
                 key={collection.id}
                 onClick={() => router.push(`/collections/${collection.id}`)}
-                className="group relative bg-white/5 backdrop-blur-md rounded-xl p-6 border border-white/10 hover:shadow-lg transition-all duration-300 cursor-pointer overflow-hidden"
+                className="group relative bg-slate-800/95 backdrop-blur-md rounded-xl p-6 border border-white/10 hover:shadow-lg transition-all duration-300 cursor-pointer overflow-hidden"
               >
                 {collection.products[0]?.image_url && (
                   <div className="absolute inset-0 -z-10">

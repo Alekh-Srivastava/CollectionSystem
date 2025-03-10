@@ -29,7 +29,7 @@ export default function ProductsPage({ products }: ProductsPageProps) {
             {products.map((product) => (
               <div 
                 key={product.id} 
-                className="group bg-white/5 backdrop-blur-md rounded-xl p-6 border border-white/10 hover:shadow-lg transition-shadow duration-300"
+                className="group bg-slate-800/95 backdrop-blur-md rounded-xl p-6 border border-white/10 hover:shadow-lg transition-shadow duration-300"
               >
                 {product.image_url && (
                   <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-800 rounded-lg">

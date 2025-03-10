@@ -94,7 +94,7 @@ export default function CreateCollectionPage({ products, collectionTypes }: Crea
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-10">
-            <div className="bg-white/5 backdrop-blur-md rounded-xl p-6 border border-white/10">
+            <div className="bg-slate-800/95 backdrop-blur-md rounded-xl p-6 border border-white/10">
               <div className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-semibold text-cyan-100 mb-2">
@@ -151,7 +151,7 @@ export default function CreateCollectionPage({ products, collectionTypes }: Crea
               </div>
             </div>
 
-            <div className="bg-white/5 backdrop-blur-md rounded-xl p-6 border border-white/10">
+            <div className="bg-slate-800/95 backdrop-blur-md rounded-xl p-6 border border-white/10">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-semibold text-cyan-100">Select Products</h2>
                 <span className="text-sm text-cyan-300">
